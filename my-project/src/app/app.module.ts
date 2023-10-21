@@ -7,6 +7,11 @@ import { FirstComponent } from './components/first/first.component';
 import { SecondProjectComponent } from './components/second-project/second-project.component';
 import { LessonOneSimpleWebsiteComponent } from './components/lesson-one-simple-website/lesson-one-simple-website.component';
 import { CoolHoverAnimationComponent } from './components/cool-hover-animation/cool-hover-animation.component';
+import { DynamicCSSChangesColorComponent } from './components/dynamic-csschanges-color/dynamic-csschanges-color.component';
+
+// Import your library
+import { ColorPickerModule } from 'ngx-color-picker';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +19,13 @@ import { CoolHoverAnimationComponent } from './components/cool-hover-animation/c
     FirstComponent,
     SecondProjectComponent,
     LessonOneSimpleWebsiteComponent,
-    CoolHoverAnimationComponent
+    CoolHoverAnimationComponent,
+    DynamicCSSChangesColorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

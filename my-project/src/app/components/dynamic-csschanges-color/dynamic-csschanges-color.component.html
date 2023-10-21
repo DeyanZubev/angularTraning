@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <div class="card">
+        <div class="row">
+            <div class="col">
+                <label>Main Color</label>
+                <!-- <input [(ngModel)]="mainData.mainColor"> -->
+                <input [(colorPicker)]="mainData.mainColor" [style.background]="mainData.mainColor" (colorPickerChange)="colorChange($event)"/>
+            </div>
+        </div>
+    </div>
+</div>
