@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { FirstComponent } from './components/first/first.component';
 import { SecondProjectComponent } from './components/second-project/second-project.component';
 import { LessonOneSimpleWebsiteComponent } from './components/lesson-one-simple-website/lesson-one-simple-website.component';
+import { CoolHoverAnimationComponent } from './components/cool-hover-animation/cool-hover-animation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FirstComponent,
     SecondProjectComponent,
-    LessonOneSimpleWebsiteComponent
+    LessonOneSimpleWebsiteComponent,
+    CoolHoverAnimationComponent
   ],
   imports: [
     BrowserModule,
