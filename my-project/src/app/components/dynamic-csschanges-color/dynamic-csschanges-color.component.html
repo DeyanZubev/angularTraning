@@ -1,9 +1,9 @@
-<div class="wrapper">
+<div class="wrapper" *ngIf="isLoaded">
     <div class="card">
         <div class="row">
             <div class="col">
                 <label>Main Color</label>
-                <!-- <input [(ngModel)]="mainData.mainColor"> -->
+                <input [(ngModel)]="mainData.mainColor" type="text" maxlength="10">
                 <input [(colorPicker)]="mainData.mainColor" [style.background]="mainData.mainColor" (colorPickerChange)="colorChange($event)"/>
             </div>
         </div>

@@ -11,7 +11,7 @@ import { DynamicCSSChangesColorComponent } from './components/dynamic-csschanges
 
 // Import your library
 import { ColorPickerModule } from 'ngx-color-picker';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { ColorPickerModule } from 'ngx-color-picker';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ColorPickerModule
+    ColorPickerModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
