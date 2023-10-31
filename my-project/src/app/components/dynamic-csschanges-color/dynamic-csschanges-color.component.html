@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <label>Main Color</label>
-                <input [(ngModel)]="mainData.mainColor" type="text" maxlength="10">
+                <input [(ngModel)]="mainData.mainColor" type="text" maxlength="10" disabled>
                 <input [(colorPicker)]="mainData.mainColor" [style.background]="mainData.mainColor" (colorPickerChange)="colorChange($event)"/>
             </div>
         </div>

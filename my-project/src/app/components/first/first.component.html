@@ -1,1 +1,26 @@
-<p>first works!</p>
+
+
+<!-- //   • id
+// • name
+// • status(ACTIVE/DISABLED)
+// • totalSessions
+// • totalBets
+// • totalWins -->
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Total sesions</th>
+        <th>Total bets</th>
+        <th>Total wins</th>
+    </tr>
+    <tr *ngFor="let item of gamePortfolio; index as i;">
+      <td>{{item.id}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.totalSessions}}</td>
+      <td>{{item.totalBets}}</td>
+      <td>{{item.totalWins}}</td>
+    </tr>
+  </table>
