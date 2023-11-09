@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+// // Functions first
+// @import "../node_modules/bootstrap/scss/functions";
+
+// // Variable overrides second
+// $primary: #900;
+// $enable-shadows: true;
+// $prefix: "mo-";
+
+// // Required Bootstrap imports
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/variables-dark";
+// @import "../node_modules/bootstrap/scss/maps";
+// @import "../node_modules/bootstrap/scss/mixins";
+// @import "../node_modules/bootstrap/scss/root";
 :root {
     --timing: 250ms;
     --rotation: 20deg;
