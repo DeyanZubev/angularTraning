@@ -1,11 +1,15 @@
 <div class="wrapper" *ngIf="isLoaded">
     <div class="card">
         <div class="row">
-            <div class="col">
-                <label>Main Color</label>
-                <input [(ngModel)]="mainData.mainColor" type="text" maxlength="10" disabled>
-                <input [(colorPicker)]="mainData.mainColor" [style.background]="mainData.mainColor" (colorPickerChange)="colorChange($event)"/>
-            </div>
+            <label class="col-sm-3">Main Color</label>
+                <div class="col-sm-3">
+                    <input [(ngModel)]="mainData.mainColor" type="text" [maxlength]="7" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-control" [(colorPicker)]="mainData.mainColor"
+                        [style.background]="mainData.mainColor" (colorPickerChange)="colorChange($event)"/>
+                </div>
+                <button class="col-sm-3 btn btn-primary">BUTTON</button>
         </div>
     </div>
 </div>
