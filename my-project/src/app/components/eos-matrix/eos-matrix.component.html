@@ -14,11 +14,12 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
             </div>
             <!-- <div class="list-group list-group-flush" *ngFor="let firstLevelItem of workUnitsData; index as i;">
+                <i class="bi bi-minus"></i>
                 <a href="#" class="list-group-item list-group-item-action bg-light">{{firstLevelItem.bailiffName}}</a>
-                <div class=`secondMenuButton${i}` *ngFor="let secondLevelItem of secondlevelMenu; index as j;">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">{{}}</a>
-                    <div class=`secondMenuButton${i}` *ngFor="let thirdLevelItem of thirdlevelMenu; index as j;">
-                        <a href="#" class="list-group-item list-group-item-action bg-light">{{}}</a>
+                <div class="" *ngFor="let secondLevelItem of secondlevelMenu[i]; index as j;">
+                    <a href="#" class="list-group-item list-group-item-action bg-light">{{secondLevelItem.name}}</a>
+                    <div class="" *ngFor="let thirdLevelItem of thirdlevelMenu[i]; index as z;">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">{{thirdLevelItem.package}}</a>
                     </div>
                 </div>
                 

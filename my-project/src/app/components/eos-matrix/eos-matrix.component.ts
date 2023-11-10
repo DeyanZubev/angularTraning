@@ -39,8 +39,10 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
       this.personAddressesData = result;
     }));
     this.secondlevelMenu = this.workUnitsData.filter(x => x.debtors);
+    this.thirdlevelMenu = this.workUnitsData.filter(x => x.cases);
     console.log(this.workUnitsData);
     console.log(this.secondlevelMenu);
+    console.log(this.thirdlevelMenu);
     this.isLoaded = true;
   }
 
