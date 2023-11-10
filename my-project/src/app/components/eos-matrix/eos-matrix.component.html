@@ -13,10 +13,11 @@
                 <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
             </div>
-            <!-- <div class="list-group list-group-flush" *ngFor="let firstLevelItem of firstLevelMenu; index as i;">
-                <a href="#" class="list-group-item list-group-item-action bg-light">{{firstLevelItem.name}}</a>
-                <div *ngIf="firstLevelItem">
-                    <div class=`secondMenuButton${i}` *ngFor="let secondLevelItem of secondlevelMenu; index as j;">
+            <!-- <div class="list-group list-group-flush" *ngFor="let firstLevelItem of workUnitsData; index as i;">
+                <a href="#" class="list-group-item list-group-item-action bg-light">{{firstLevelItem.bailiffName}}</a>
+                <div class=`secondMenuButton${i}` *ngFor="let secondLevelItem of secondlevelMenu; index as j;">
+                    <a href="#" class="list-group-item list-group-item-action bg-light">{{}}</a>
+                    <div class=`secondMenuButton${i}` *ngFor="let thirdLevelItem of thirdlevelMenu; index as j;">
                         <a href="#" class="list-group-item list-group-item-action bg-light">{{}}</a>
                     </div>
                 </div>

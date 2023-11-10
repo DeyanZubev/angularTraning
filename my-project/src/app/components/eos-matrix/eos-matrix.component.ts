@@ -15,26 +15,32 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   isLoaded: Boolean = false;
   status: Boolean = false;
   mainData: any = {};
-  data: any[] = [];
+  workUnitsData: any[] = [];
+  caseInfoData: any[] = [];
+  personAddressesData: any[] = [];
   workUnits: string = '../../../assets/eosMatrixMockData/getWorkUnits.json';
   caseInfo: string = '../../../assets/eosMatrixMockData/getCaseInfo.json';
   personAddresses: string = '../../../assets/eosMatrixMockData/getPersonAddresses.json';
 
-  firstLevelMenu: any[] = [];
+  // firstLevelMenu: any[] = [];
+  secondlevelMenu: any[] = [];
+  thirdlevelMenu: any[] = [];
 
 
   ngOnInit(): void {
 
     this.dataSubscription.push(this.getMockData(this.workUnits).subscribe((result: any) => {
-      this.data.push(result);
+      this.workUnitsData = result;
     }));
     this.dataSubscription.push(this.getMockData(this.caseInfo).subscribe((result: any) => {
-      this.data.push(result);
+      this.caseInfoData = result;
     }));
     this.dataSubscription.push(this.getMockData(this.personAddresses).subscribe((result: any) => {
-      this.data.push(result);
+      this.personAddressesData = result;
     }));
-    console.log(this.data);
+    this.secondlevelMenu = this.workUnitsData.filter(x => x.debtors);
+    console.log(this.workUnitsData);
+    console.log(this.secondlevelMenu);
     this.isLoaded = true;
   }
 
@@ -47,10 +53,6 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.dataSubscription.forEach((subscription) => {
-      if (subscription) {
-        subscription.unsubscribe();
-      }
-    });
+    this.dataSubscription.forEach((subscription) => subscription.unsubscribe());
   }
 }
