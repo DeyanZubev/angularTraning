@@ -13,6 +13,7 @@ import { DynamicCSSChangesColorComponent } from './components/dynamic-csschanges
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EosMatrixComponent } from './components/eos-matrix/eos-matrix.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
     SecondProjectComponent,
     LessonOneSimpleWebsiteComponent,
     CoolHoverAnimationComponent,
-    DynamicCSSChangesColorComponent
+    DynamicCSSChangesColorComponent,
+    EosMatrixComponent
   ],
   imports: [
     BrowserModule,
