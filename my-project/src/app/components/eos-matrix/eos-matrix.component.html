@@ -9,21 +9,25 @@
                 <button class="btn btn-primary toggleCustomButton" (click)="clickEvent()"><i
                         class="bi bi-list"></i></button>
             </div>
-            <div class="list-group list-group-flush">
-                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
-            </div>
-            <!-- <div class="list-group list-group-flush" *ngFor="let firstLevelItem of workUnitsData; index as i;">
-                <i class="bi bi-minus"></i>
-                <a href="#" class="list-group-item list-group-item-action bg-light">{{firstLevelItem.bailiffName}}</a>
-                <div class="" *ngFor="let secondLevelItem of secondlevelMenu[i]; index as j;">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">{{secondLevelItem.name}}</a>
-                    <div class="" *ngFor="let thirdLevelItem of thirdlevelMenu[i]; index as z;">
-                        <a href="#" class="list-group-item list-group-item-action bg-light">{{thirdLevelItem.package}}</a>
+            <div class="list-group list-group-flush firstLevelItem"
+                *ngFor="let firstLevelItem of workUnitsData; index as i;">
+                <a href="#" class="list-group-item list-group-item-action bg-light">
+                    <i class="bi bi-dash-square-fill"></i>
+                    <i class="bi bi-dash-square-fill customRotate"></i>
+                    {{firstLevelItem.bailiffName}}</a>
+                <div class="secondLevelItem" *ngFor="let secondLevelItem of workUnitsData[i].debtors; index as j;">
+                    <a href="#" class="list-group-item list-group-item-action bg-light">
+                        <i class="bi bi-dash-square-fill"></i>
+                        <i class="bi bi-dash-square-fill customRotate"></i>
+                        {{secondLevelItem.name}}</a>
+                    <div class="thirdLevelItem" *ngFor="let thirdLevelItem of workUnitsData[i].cases; index as z;">
+                        <a href="#" class="list-group-item list-group-item-action bg-light">
+                            <i class="bi bi-dash-square-fill"></i>
+                            {{thirdLevelItem.package}}</a>
                     </div>
                 </div>
-                
-            </div> -->
+
+            </div>
         </div>
         <!-- /#sidebar-wrapper -->
 
@@ -37,8 +41,7 @@
                     </div>
                     <label class="col-sm-3">Main Color</label>
                     <div class="col-sm-3">
-                        <input [(ngModel)]="mainData.mainColor" type="text" [maxlength]="7"
-                            class="form-control">
+                        <input [(ngModel)]="mainData.mainColor" type="text" [maxlength]="7" class="form-control">
                     </div>
                     <div class="col-sm-3">
                         <input class="form-control" [(colorPicker)]="mainData.mainColor"

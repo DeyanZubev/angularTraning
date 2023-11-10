@@ -51,6 +51,14 @@ body {
     margin-left: 15rem;
 }
 
+.bi.bi-dash-square-fill {
+    margin-right: 5px;
+}
+
+.firstLevelItem > a i.customRotate.bi-dash-square-fill::before {
+    transform: rotate(90deg);
+}
+
 @media (min-width: 768px) {
     #sidebar-wrapper {
         margin-left: 0;
