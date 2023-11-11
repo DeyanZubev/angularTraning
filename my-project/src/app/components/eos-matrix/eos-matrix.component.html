@@ -8,20 +8,25 @@
             <ul class="list-group list-group-flush firstLevelItem"
                 *ngFor="let firstLevelItem of workUnitsData; index as i;">
                 <li class="list-group-item list-group-item-action bg-light">
-                    <a href="#" class="list-group-item list-group-item-action bg-light" (click)="openSecondLevelMenu()">
+                    <a href="#" class="list-group-item list-group-item-action bg-light" 
+                    [ngClass]="{'selected': isOpenSecondLevelMenu['line' + i]}"
+                    (click)="openSecondLevelMenu(i)">
                         <i class="bi bi-dash-square-fill"></i>
                         {{firstLevelItem.bailiffName}}</a>
-                    <ul class="secondLevelItem" [ngClass]="{'hide': isOpenSecondLevelMenu}"
+                    <ul class="secondLevelItem hide" [ngClass]="{'hide': !isOpenSecondLevelMenu['line' + i]}"
                         *ngFor="let secondLevelItem of workUnitsData[i].debtors; index as j;">
                         <li class="list-group-item list-group-item-action bg-light">
                             <a href="#" class="list-group-item list-group-item-action bg-light"
-                                (click)="openThirdLevelMenu()">
+                            [ngClass]="{'selected': isOpenThirdLevelMenu['line' + i + j]}"
+                                (click)="openThirdLevelMenu(i, j)">
                                 <i class="bi bi-dash-square-fill"></i>
                                 {{secondLevelItem.name}}</a>
-                            <ul class="thirdLevelItem" [ngClass]="{'hide': isOpenThirdLevelMenu}"
+                            <ul class="thirdLevelItem hide" [ngClass]="{'hide': !isOpenThirdLevelMenu['line' + i + j]}"
                                 *ngFor="let thirdLevelItem of workUnitsData[i].cases; index as z;">
                                 <li class="list-group-item list-group-item-action bg-light">
-                                    <a href="#" class="list-group-item list-group-item-action bg-light">
+                                    <a href="#" class="list-group-item list-group-item-action bg-light"
+                                    [ngClass]="{'selected': isPersonSelected['case' + i + j + z]}"
+                                    (click)="loadTableData(i, j, z)">
                                         <i class="bi bi-dash-square-fill"></i>
                                         {{thirdLevelItem.package}}</a>
                                 </li>
@@ -41,21 +46,29 @@
                         <button class="btn btn-primary mobileToggleCustom" (click)="clickEvent()">
                             <i class="bi bi-list"></i></button>
                     </div>
-                    <label class="col-sm-3">Main Color</label>
-                    <div class="col-sm-3">
-                        <input [(ngModel)]="mainData.mainColor" type="text" [maxlength]="7" class="form-control">
-                    </div>
-                    <div class="col-sm-3">
-                        <input class="form-control" [(colorPicker)]="mainData.mainColor"
-                            [style.background]="mainData.mainColor" />
-                    </div>
+                    
                     <button class="col-sm-3 btn btn-primary">BUTTON</button>
                 </div>
                 <div class="row">
                     <div class="col">
                         <table>
-
-                        </table>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th>Total sesions</th>
+                                <th>Total bets</th>
+                                <th>Total wins</th>
+                            </tr>
+                            <!-- <tr *ngFor="let item of gamePortfolio; index as i;">
+                              <td>{{item.id}}</td>
+                              <td>{{item.name}}</td>
+                              <td>{{item.status}}</td>
+                              <td>{{item.totalSessions}}</td>
+                              <td>{{item.totalBets}}</td>
+                              <td>{{item.totalWins}}</td>
+                            </tr> -->
+                          </table>
                     </div>
                 </div>
             </div>

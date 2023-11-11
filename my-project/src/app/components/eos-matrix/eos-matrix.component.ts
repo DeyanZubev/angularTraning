@@ -15,8 +15,11 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription[] = [];
   isLoaded: Boolean = false;
   status: Boolean = false;
-  isOpenSecondLevelMenu: Boolean = false;
-  isOpenThirdLevelMenu: Boolean = false;
+  isOpenSecondLevelMenu: any = {};
+  isOpenThirdLevelMenu: any = {};
+  isPersonSelected: any = {
+    case000: false
+  };
   mainData: any = {};
   workUnitsData: any;
   caseInfoData: any;
@@ -48,12 +51,24 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
     return this.status = !this.status;
   }
 
-  openSecondLevelMenu() {
-    return this.isOpenSecondLevelMenu = !this.isOpenSecondLevelMenu;
+  openSecondLevelMenu(index: number) {
+    return this.isOpenSecondLevelMenu['line' + index] = !this.isOpenSecondLevelMenu['line' + index];
   }
 
-  openThirdLevelMenu() {
-    return this.isOpenThirdLevelMenu = !this.isOpenThirdLevelMenu;
+  openThirdLevelMenu(index1: number, index2: number) {
+    return this.isOpenThirdLevelMenu['line' + index1 + index2] = !this.isOpenThirdLevelMenu['line' + index1 + index2];
+  
+  }
+  loadTableData(index1: number, index2: number, index3: number): void {
+    if (!this.isPersonSelected['case' + index1 + index2 + index3]) {
+      this.isPersonSelected['case' + index1 + index2 + index3] = true;
+      (Object.keys(this.isPersonSelected) as (keyof typeof this.isPersonSelected)[]).forEach((key) => {
+        if (key && key !== 'case' + index1 + index2 + index3) {
+          this.isPersonSelected[key] = false;
+        }
+      });
+      // TODO: haveto load the person data
+    }
   }
 
   getMockData(urlPath: string): Observable<any> {
