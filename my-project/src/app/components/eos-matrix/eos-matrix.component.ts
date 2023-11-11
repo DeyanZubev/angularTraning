@@ -15,6 +15,8 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription[] = [];
   isLoaded: Boolean = false;
   status: Boolean = false;
+  isOpenSecondLevelMenu: Boolean = false;
+  isOpenThirdLevelMenu: Boolean = false;
   mainData: any = {};
   workUnitsData: any;
   caseInfoData: any;
@@ -44,6 +46,14 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
 
   clickEvent() {
     return this.status = !this.status;
+  }
+
+  openSecondLevelMenu() {
+    return this.isOpenSecondLevelMenu = !this.isOpenSecondLevelMenu;
+  }
+
+  openThirdLevelMenu() {
+    return this.isOpenThirdLevelMenu = !this.isOpenThirdLevelMenu;
   }
 
   getMockData(urlPath: string): Observable<any> {

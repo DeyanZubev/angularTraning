@@ -10,6 +10,10 @@ body {
     overflow-x: hidden;
 }
 
+.border-right {
+    border-right: 1px solid gray;
+}
+
 #sidebar-wrapper {
     min-height: 100vh;
     margin-left: -15rem;
@@ -25,7 +29,7 @@ body {
 }
 
 #sidebar-wrapper .list-group {
-    width: 15rem;
+    width: 100%;
 }
 
 #page-content-wrapper {
@@ -55,9 +59,22 @@ body {
     margin-right: 5px;
 }
 
-.firstLevelItem > a i.customRotate.bi-dash-square-fill::before {
-    transform: rotate(90deg);
+li.list-group-item {
+    padding: 0;
+    border: 0;
 }
+
+a.list-group-item {
+    border: 0;
+}
+
+.secondLevelItem.hide, .thirdLevelItem.hide {
+    display: none;
+}
+
+// .firstLevelItem > a i.customRotate.bi-dash-square-fill::before {
+//     transform: rotate(90deg);
+// }
 
 @media (min-width: 768px) {
     #sidebar-wrapper {

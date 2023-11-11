@@ -1,38 +1,40 @@
 <div class="wrapper" *ngIf="isLoaded">
     <div class="d-flex" id="wrapper">
-        <!-- <i class="bi-alarm"></i>
-            <i class="bi-alarm" style="font-size: 2rem; color: cornflowerblue;"></i>
-            <i class="bi bi-star-fill"></i> -->
-        <!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper" [ngClass]="status ? 'hide' : 'show'">
+        <section class="bg-light border-right leftMenu" id="sidebar-wrapper" [ngClass]="status ? 'hide' : 'show'">
             <div class="sidebar-heading">
                 <button class="btn btn-primary toggleCustomButton" (click)="clickEvent()"><i
                         class="bi bi-list"></i></button>
             </div>
-            <div class="list-group list-group-flush firstLevelItem"
+            <ul class="list-group list-group-flush firstLevelItem"
                 *ngFor="let firstLevelItem of workUnitsData; index as i;">
-                <a href="#" class="list-group-item list-group-item-action bg-light">
-                    <i class="bi bi-dash-square-fill"></i>
-                    <i class="bi bi-dash-square-fill customRotate"></i>
-                    {{firstLevelItem.bailiffName}}</a>
-                <div class="secondLevelItem" *ngFor="let secondLevelItem of workUnitsData[i].debtors; index as j;">
-                    <a href="#" class="list-group-item list-group-item-action bg-light">
+                <li class="list-group-item list-group-item-action bg-light">
+                    <a href="#" class="list-group-item list-group-item-action bg-light" (click)="openSecondLevelMenu()">
                         <i class="bi bi-dash-square-fill"></i>
-                        <i class="bi bi-dash-square-fill customRotate"></i>
-                        {{secondLevelItem.name}}</a>
-                    <div class="thirdLevelItem" *ngFor="let thirdLevelItem of workUnitsData[i].cases; index as z;">
-                        <a href="#" class="list-group-item list-group-item-action bg-light">
-                            <i class="bi bi-dash-square-fill"></i>
-                            {{thirdLevelItem.package}}</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+                        {{firstLevelItem.bailiffName}}</a>
+                    <ul class="secondLevelItem" [ngClass]="{'hide': isOpenSecondLevelMenu}"
+                        *ngFor="let secondLevelItem of workUnitsData[i].debtors; index as j;">
+                        <li class="list-group-item list-group-item-action bg-light">
+                            <a href="#" class="list-group-item list-group-item-action bg-light"
+                                (click)="openThirdLevelMenu()">
+                                <i class="bi bi-dash-square-fill"></i>
+                                {{secondLevelItem.name}}</a>
+                            <ul class="thirdLevelItem" [ngClass]="{'hide': isOpenThirdLevelMenu}"
+                                *ngFor="let thirdLevelItem of workUnitsData[i].cases; index as z;">
+                                <li class="list-group-item list-group-item-action bg-light">
+                                    <a href="#" class="list-group-item list-group-item-action bg-light">
+                                        <i class="bi bi-dash-square-fill"></i>
+                                        {{thirdLevelItem.package}}</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
         <!-- /#sidebar-wrapper -->
 
         <!-- Page Content -->
-        <div id="page-content-wrapper">
+        <main id="page-content-wrapper" class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col">
@@ -57,7 +59,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <!-- /#page-content-wrapper -->
 
     </div>
