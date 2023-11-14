@@ -8,16 +8,15 @@
             <ul class="list-group list-group-flush firstLevelItem"
                 *ngFor="let firstLevelItem of workUnitsData; index as i;">
                 <li class="list-group-item list-group-item-action bg-light">
-                    <a href="#" class="list-group-item list-group-item-action bg-light" 
-                    [ngClass]="{'selected': isOpenSecondLevelMenu['line' + i]}"
-                    (click)="openSecondLevelMenu(i)">
+                    <a href="#" class="list-group-item list-group-item-action bg-light"
+                        [ngClass]="{'selected': isOpenSecondLevelMenu['line' + i]}" (click)="openSecondLevelMenu(i)">
                         <i class="bi bi-dash-square-fill"></i>
                         {{firstLevelItem.bailiffName}}</a>
                     <ul class="secondLevelItem hide" [ngClass]="{'hide': !isOpenSecondLevelMenu['line' + i]}"
                         *ngFor="let secondLevelItem of workUnitsData[i].debtors; index as j;">
                         <li class="list-group-item list-group-item-action bg-light">
                             <a href="#" class="list-group-item list-group-item-action bg-light"
-                            [ngClass]="{'selected': isOpenThirdLevelMenu['line' + i + j]}"
+                                [ngClass]="{'selected': isOpenThirdLevelMenu['line' + i + j]}"
                                 (click)="openThirdLevelMenu(i, j)">
                                 <i class="bi bi-dash-square-fill"></i>
                                 {{secondLevelItem.name}}</a>
@@ -25,8 +24,8 @@
                                 *ngFor="let thirdLevelItem of workUnitsData[i].cases; index as z;">
                                 <li class="list-group-item list-group-item-action bg-light">
                                     <a href="#" class="list-group-item list-group-item-action bg-light"
-                                    [ngClass]="{'selected': isPersonSelected['case' + i + j + z]}"
-                                    (click)="loadTableData(i, j, z)">
+                                        [ngClass]="{'selected': isPersonSelected['case' + i + j + z]}"
+                                        (click)="selectCase(i, j, z)">
                                         <i class="bi bi-dash-square-fill"></i>
                                         {{thirdLevelItem.package}}</a>
                                 </li>
@@ -42,33 +41,53 @@
         <main id="page-content-wrapper" class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col">
-                        <button class="btn btn-primary mobileToggleCustom" (click)="clickEvent()">
+                    <div class="col mobileToggleCustom">
+                        <button class="btn btn-primary" (click)="clickEvent()">
                             <i class="bi bi-list"></i></button>
                     </div>
-                    
-                    <button class="col-sm-3 btn btn-primary">BUTTON</button>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <table>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Total sesions</th>
-                                <th>Total bets</th>
-                                <th>Total wins</th>
-                            </tr>
-                            <!-- <tr *ngFor="let item of gamePortfolio; index as i;">
-                              <td>{{item.id}}</td>
-                              <td>{{item.name}}</td>
-                              <td>{{item.status}}</td>
-                              <td>{{item.totalSessions}}</td>
-                              <td>{{item.totalBets}}</td>
-                              <td>{{item.totalWins}}</td>
-                            </tr> -->
-                          </table>
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th scope="col">Действия</th>
+                                    <th scope="col">Град</th>
+                                    <th scope="col">Адрес</th>
+                                    <th scope="col">Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of personAddressesData; index as i;">
+                                    <td>
+                                        <a class="editButton w-100" (click)="editOrAddRow(i)">
+                                            <i class="bi bi-pencil-square"></i>
+                                            <span>Редактирай</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <input class="form-control" [(ngModel)]="item.settlementName" type="text"
+                                            [maxlength]="50" [readonly]="true">
+                                    </td>
+                                    <td>
+                                        <input class="form-control" [(ngModel)]="item.address" type="text"
+                                            [maxlength]="50" [readonly]="true">
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col">
+                        <button class="btn btn-primary">
+                            Добави
+                        </button>
                     </div>
                 </div>
             </div>

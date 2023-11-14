@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, forkJoin } from 'rxjs';
 
 
 @Component({
@@ -17,9 +17,7 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   status: Boolean = false;
   isOpenSecondLevelMenu: any = {};
   isOpenThirdLevelMenu: any = {};
-  isPersonSelected: any = {
-    case000: false
-  };
+  isPersonSelected: any = {};
   mainData: any = {};
   workUnitsData: any;
   caseInfoData: any;
@@ -31,18 +29,37 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   // firstLevelMenu: any[] = [];
   secondlevelMenu: any[] = [];
   thirdlevelMenu: any[] = [];
+  tableData: any;
+  indexes: any = {};
 
 
   ngOnInit(): void {
-    this.dataSubscription.push(this.getMockData(this.workUnits).subscribe((result: any) => {
-      this.workUnitsData = result;
-    }));
-    this.dataSubscription.push(this.getMockData(this.caseInfo).subscribe((result: any) => {
-      this.caseInfoData = result;
-    }));
-    this.dataSubscription.push(this.getMockData(this.personAddresses).subscribe((result: any) => {
-      this.personAddressesData = result;
-    }));
+    // this.dataSubscription.push(this.getMockData(this.workUnits).subscribe((result: any) => {
+    //   this.workUnitsData = result;
+    // }));
+    // this.dataSubscription.push(this.getMockData(this.caseInfo).subscribe((result: any) => {
+    //   this.caseInfoData = result;
+    // }));
+    // this.dataSubscription.push(this.getMockData(this.personAddresses).subscribe((result: any) => {
+    //   this.personAddressesData = result;
+    // }));
+    forkJoin([
+      this.getMockData(this.workUnits),
+      this.getMockData(this.caseInfo),
+      this.getMockData(this.personAddresses)
+    ]).subscribe(res => [
+      this.workUnitsData = res[0],
+      this.caseInfoData = res[1],
+      this.personAddressesData = res[2].addresses,
+      console.log(this.personAddressesData)
+      // this.tableData = function loadSelectedCase(i: number, z: number) {
+      //   this.tableData.push(this.workUnitsData[i].cases[z].workUnitId);
+      //   this.tableData.push(this.workUnitsData[i].cases[z].status);
+      //   this.tableData.push(this.personAddressesData.address.find((x: any) => x.workUnitId));
+      //   console.log(this.tableData);
+      // },
+      // console.log(this.tableData)
+    ]);
 
     this.isLoaded = true;
   }
@@ -59,7 +76,12 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
     return this.isOpenThirdLevelMenu['line' + index1 + index2] = !this.isOpenThirdLevelMenu['line' + index1 + index2];
   
   }
-  loadTableData(index1: number, index2: number, index3: number): void {
+
+  selectPerson() {
+
+  }
+
+  selectCase(index1: number, index2: number, index3: number): void {
     if (!this.isPersonSelected['case' + index1 + index2 + index3]) {
       this.isPersonSelected['case' + index1 + index2 + index3] = true;
       (Object.keys(this.isPersonSelected) as (keyof typeof this.isPersonSelected)[]).forEach((key) => {
@@ -67,7 +89,6 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
           this.isPersonSelected[key] = false;
         }
       });
-      // TODO: haveto load the person data
     }
   }
 
@@ -75,7 +96,11 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
     return this.http.get(urlPath);
   }
 
+  editOrAddRow(index: number): void {
+    
+  }
+
   ngOnDestroy(): void {
-    this.dataSubscription.forEach((subscription) => subscription.unsubscribe());
+    // this.dataSubscription.forEach((subscription) => subscription.unsubscribe());
   }
 }

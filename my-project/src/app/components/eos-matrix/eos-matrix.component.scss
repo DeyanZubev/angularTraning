@@ -16,7 +16,7 @@ body {
 
 #sidebar-wrapper {
     min-height: 100vh;
-    margin-left: -15rem;
+    margin-left: -17rem;
     -webkit-transition: margin .25s ease-out;
     -moz-transition: margin .25s ease-out;
     -o-transition: margin .25s ease-out;
@@ -52,10 +52,10 @@ body {
 }
 
 .hide .toggleCustomButton {
-    margin-left: 15rem;
+    margin-left: 17rem;
 }
 
-.bi.bi-dash-square-fill {
+.bi {
     margin-right: 5px;
 }
 
@@ -76,6 +76,26 @@ a.selected {
     font-weight: bold;
 }
 
+.mobileToggleCustom {
+    padding: 0.875rem 1.25rem;
+}
+
+.editButton {
+    cursor: pointer;
+    color: blue;
+}
+
+//----------TABLE
+.table tbody .form-check {
+    display: inline-flex;
+    
+    input[type=checkbox] {
+        margin-top: 11px;
+        border: 1px solid gray;
+    }
+}
+    
+
 // .firstLevelItem > a i.customRotate.bi-dash-square-fill::before {
 //     transform: rotate(90deg);
 // }
@@ -95,11 +115,11 @@ a.selected {
     }
 
     .hide {
-        margin-left: -15rem !important;
+        margin-left: -17rem !important;
     }
 
-    .mobileToggleCustom {
-        display: none;
+    .mobileToggleCustom > button {
+        visibility: hidden;
     }
 }
 
