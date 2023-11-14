@@ -88,17 +88,28 @@ a.selected {
 //----------TABLE
 .table tbody .form-check {
     display: inline-flex;
-    
+
     input[type=checkbox] {
         margin-top: 11px;
         border: 1px solid gray;
     }
 }
-    
 
-// .firstLevelItem > a i.customRotate.bi-dash-square-fill::before {
-//     transform: rotate(90deg);
-// }
+.emptyField {
+    background-color: pink;
+}
+
+app-add-edit-row {
+    position: absolute;
+    top: 0.1px;
+    width: 100%;
+    height: 100%;
+}
+
+// Material Design Angular Datepicker
+mat-form-field .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+}
 
 @media (min-width: 768px) {
     #sidebar-wrapper {

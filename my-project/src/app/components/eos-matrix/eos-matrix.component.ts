@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, forkJoin } from 'rxjs';
 
 
+
 @Component({
   selector: 'app-eos-matrix',
   templateUrl: './eos-matrix.component.html',
@@ -15,13 +16,19 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   private dataSubscription: Subscription[] = [];
   isLoaded: Boolean = false;
   status: Boolean = false;
+  showAddressesTable: Boolean = false;
+  showCaseInfoTable: Boolean = false;
   isOpenSecondLevelMenu: any = {};
   isOpenThirdLevelMenu: any = {};
+  isPhysicalPersonSelected: any = {};
   isPersonSelected: any = {};
+  isCaseSelected: any = {};
   mainData: any = {};
   workUnitsData: any;
   caseInfoData: any;
+  selectedCasesInfo: any;
   personAddressesData: any;
+  allAddressesOfPerson: any;
   workUnits: string = '../../../assets/eosMatrixMockData/getWorkUnits.json';
   caseInfo: string = '../../../assets/eosMatrixMockData/getCaseInfo.json';
   personAddresses: string = '../../../assets/eosMatrixMockData/getPersonAddresses.json';
@@ -31,6 +38,10 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   thirdlevelMenu: any[] = [];
   tableData: any;
   indexes: any = {};
+  rowData: any;
+  modals: any = {
+    isEditOrAddOpened: false
+  }
 
 
   ngOnInit(): void {
@@ -50,15 +61,7 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
     ]).subscribe(res => [
       this.workUnitsData = res[0],
       this.caseInfoData = res[1],
-      this.personAddressesData = res[2].addresses,
-      console.log(this.personAddressesData)
-      // this.tableData = function loadSelectedCase(i: number, z: number) {
-      //   this.tableData.push(this.workUnitsData[i].cases[z].workUnitId);
-      //   this.tableData.push(this.workUnitsData[i].cases[z].status);
-      //   this.tableData.push(this.personAddressesData.address.find((x: any) => x.workUnitId));
-      //   console.log(this.tableData);
-      // },
-      // console.log(this.tableData)
+      this.personAddressesData = res[2]
     ]);
 
     this.isLoaded = true;
@@ -68,28 +71,63 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
     return this.status = !this.status;
   }
 
+  removeAllSelectedClass(select: any, index1: number, index2?: number, index3?: number): void {
+    (Object.keys(select) as (keyof typeof select)[]).forEach((key) => {
+      if (key && (key === 'line' + index1 + index2 + index3 || key === 'line' + index1 + index2 || key === 'line' + index1)) {
+        select[key] = true;
+      } else {
+        select[key] = false;
+      }
+    });
+  }
+
   openSecondLevelMenu(index: number) {
-    return this.isOpenSecondLevelMenu['line' + index] = !this.isOpenSecondLevelMenu['line' + index];
+    this.isOpenSecondLevelMenu['line' + index] = !this.isOpenSecondLevelMenu['line' + index];
+    this.isPhysicalPersonSelected['line' + index] = true;
+    this.removeAllSelectedClass(this.isPhysicalPersonSelected, index);
+    this.removeAllSelectedClass(this.isPersonSelected, index);
+    this.removeAllSelectedClass(this.isCaseSelected, index);
   }
 
-  openThirdLevelMenu(index1: number, index2: number) {
-    return this.isOpenThirdLevelMenu['line' + index1 + index2] = !this.isOpenThirdLevelMenu['line' + index1 + index2];
-  
+  openThirdLevelMenu(index1: number, index2: number, personId: string): void {
+    this.isOpenThirdLevelMenu['line' + index1 + index2] = !this.isOpenThirdLevelMenu['line' + index1 + index2];
+    this.isPersonSelected['line' + index1 + index2] = true;
+    this.removeAllSelectedClass(this.isPhysicalPersonSelected, index1);
+    this.removeAllSelectedClass(this.isPersonSelected, index1, index2);
+    this.removeAllSelectedClass(this.isCaseSelected, index1, index2);
+
+    this.loadPersonAddressesAndCheckboxCaseStatus(index1, personId);
   }
 
-  selectPerson() {
-
+  loadPersonAddressesAndCheckboxCaseStatus(index1:number, personId: string) {
+    this.allAddressesOfPerson = this.personAddressesData.find((x: any) => x.workUnitId === personId);
+    const allCheckboxes = this.workUnitsData[index1].cases.filter((item: any) => item.workUnitId === personId);
+    this.allAddressesOfPerson.addresses.forEach((x:any, index: number) => {
+      x.checkboxStatus = index < allCheckboxes.length ? allCheckboxes[index].status : 0;
+    });
+    this.rowData = this.allAddressesOfPerson;
+    this.showAddressesTable = true;
+    this.showCaseInfoTable = false;
   }
 
-  selectCase(index1: number, index2: number, index3: number): void {
-    if (!this.isPersonSelected['case' + index1 + index2 + index3]) {
-      this.isPersonSelected['case' + index1 + index2 + index3] = true;
-      (Object.keys(this.isPersonSelected) as (keyof typeof this.isPersonSelected)[]).forEach((key) => {
-        if (key && key !== 'case' + index1 + index2 + index3) {
-          this.isPersonSelected[key] = false;
-        }
-      });
+  selectCase(index1: number, index2: number, index3: number, caseId:string): void {
+    if (!this.isCaseSelected['line' + index1 + index2 + index3]) {
+      this.isCaseSelected['line' + index1 + index2 + index3] = true;
+      this.removeAllSelectedClass(this.isPhysicalPersonSelected, index1);
+      this.removeAllSelectedClass(this.isPersonSelected, index1, index2);
+      this.removeAllSelectedClass(this.isCaseSelected, index1, index2, index3);
     }
+
+    this.loadCasesInfo(caseId);
+  }
+
+  loadCasesInfo(caseId: string) {
+    console.log(caseId);
+    console.log(this.caseInfoData);
+    this.selectedCasesInfo = this.caseInfoData.find((x: any) => x.workUnitId === caseId);
+    console.log(this.selectedCasesInfo);
+    this.showCaseInfoTable = true;
+    this.showAddressesTable = false;
   }
 
   getMockData(urlPath: string): Observable<any> {
@@ -97,7 +135,18 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   }
 
   editOrAddRow(index: number): void {
-    
+    this.rowData.index = index;
+    this.openEditOrAddModal();
+    // this.rowData.addresses[index];
+  }
+
+  addNewRow() {
+    this.rowData.index = null;
+    this.openEditOrAddModal(); 
+  }
+
+  openEditOrAddModal() {
+    this.modals.isEditOrAddOpened = true;
   }
 
   ngOnDestroy(): void {

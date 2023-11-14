@@ -13,7 +13,11 @@ import { DynamicCSSChangesColorComponent } from './components/dynamic-csschanges
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { EosMatrixComponent } from './components/eos-matrix/eos-matrix.component';
+// import { AddEditRowComponent } from './components/eos-matrix/modals/add-edit-row/add-edit-row.component';
+// import { EosMatrixComponent } from './components/eos-matrix/eos-matrix.component';
+import { EosMatrixModule } from './components/eos-matrix/eos-matrix.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -23,14 +27,15 @@ import { EosMatrixComponent } from './components/eos-matrix/eos-matrix.component
     LessonOneSimpleWebsiteComponent,
     CoolHoverAnimationComponent,
     DynamicCSSChangesColorComponent,
-    EosMatrixComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ColorPickerModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    EosMatrixModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

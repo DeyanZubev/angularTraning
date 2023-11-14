@@ -10,35 +10,40 @@
         "bailiffName": "Физическо лице 1",
         "debtors": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000022",
+                "workUnitId": "1000",
                 "name": "Лице 11"
             },
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000023",
+                "workUnitId": "1001",
                 "name": "Лице 12"
             }
         ],
         "otherPeople": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000024",
+                "workUnitId": "1002",
                 "name": "Лице 13"
             }
         ],
         "cases": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000042",
+                "workUnitId": "1000",
+                "package": "Случай 21",
+                "status": 1
+            },
+            {
+                "workUnitId": "1000",
+                "package": "Случай 22",
+                "status": 0
+            },
+            {
+                "workUnitId": "1001",
                 "package": "Случай 21",
                 "status": 0
             },
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000042",
-                "package": "Случай 21",
-                "status": 0
-            },
-            {
-                "workUnitId": "00000000-0000-0000-0000-000000000042",
-                "package": "Случай 21",
-                "status": 0
+                "workUnitId": "1001",
+                "package": "Случай 22",
+                "status": 1
             }
         ]
     },
@@ -53,25 +58,40 @@
         "bailiffName": "Физическо лице 1",
         "debtors": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000022",
+                "workUnitId": "2000",
                 "name": "Лице 11"
             },
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000023",
+                "workUnitId": "2001",
                 "name": "Лице 12"
             }
         ],
         "otherPeople": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000024",
+                "workUnitId": "2002",
                 "name": "Лице 13"
             }
         ],
         "cases": [
             {
-                "workUnitId": "00000000-0000-0000-0000-000000000042",
+                "workUnitId": "2000",
+                "package": "Случай 21",
+                "status": 1
+            },
+            {
+                "workUnitId": "2000",
+                "package": "Случай 22",
+                "status": 0
+            },
+            {
+                "workUnitId": "2001",
                 "package": "Случай 21",
                 "status": 0
+            },
+            {
+                "workUnitId": "2001",
+                "package": "Случай 22",
+                "status": 1
             }
         ]
     }
