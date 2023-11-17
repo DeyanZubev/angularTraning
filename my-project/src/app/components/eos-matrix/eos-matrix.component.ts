@@ -137,7 +137,6 @@ export class EosMatrixComponent implements OnInit, OnDestroy {
   editOrAddRow(index: number): void {
     this.rowData.index = index;
     this.openEditOrAddModal();
-    // this.rowData.addresses[index];
   }
 
   addNewRow() {
